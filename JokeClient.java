@@ -1,11 +1,15 @@
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class JokeClient {
 	public static void main(String[] args){
 		String serverName;
 		String userName;
+		HashMap<String,ArrayList<String>> status=new HashMap<String,ArrayList<String>>();
+		status.put("JOKE",new ArrayList());
+		status.put("PROVERB", new ArrayList());
 
 		if (args.length<1){
 			serverName="localhost";
@@ -21,7 +25,7 @@ public class JokeClient {
 			do {
 				name=in.readLine();
 				if (name.indexOf("quit")<0){
-					getInfo(serverName, name, userName);
+					status=getInfo(serverName, name, userName,status);
 				}
 			}while(name.indexOf("quit")<0);
 			System.out.println("Cancelled by user request.");
@@ -31,7 +35,7 @@ public class JokeClient {
 		
 	}
 
-	static void getInfo(String serverName, String name, String userName){
+	static HashMap<String,ArrayList<String>> getInfo(String serverName, String name, String userName, HashMap<String,ArrayList<String>> status){
 		Socket sock;
 		BufferedReader fromServer;
 		PrintStream toServer;
@@ -45,6 +49,7 @@ public class JokeClient {
 			fromServer=new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			toServer=new PrintStream(sock.getOutputStream());
 			toServer.println(passInfo);
+			toServer.println(status);
 			toServer.flush();
 			textFromServer=fromServer.readLine();
 			if (textFromServer!=null){
