@@ -1,7 +1,7 @@
 import java.io.*;
 import java.net.*;
 import java.util.HashMap;
-
+import java.util.Arrays;
 
 
 /*
@@ -43,6 +43,9 @@ class Worker extends Thread{
 		String fromClient;
 		String userName;
 		String[] fromClientSep;
+		String statusFrom;
+		String statusFromNew;
+		String[] status;
 
 		try{
 			in=new BufferedReader(new InputStreamReader(sock.getInputStream()));  //in is a buffered read to read the character-based text coming into the socket
@@ -50,12 +53,43 @@ class Worker extends Thread{
 			fromClient=in.readLine();
 			fromClientSep=fromClient.split(",");
 			userName=fromClientSep[0].substring(1);
+			statusFrom=in.readLine();
+			if (statusFrom.length()<=2){status=new String[0];}
+			else{
+				statusFromNew=statusFrom.substring(1,statusFrom.length()-1);
+				status=statusFromNew.split(", ");
+				System.out.println(statusFromNew);
+			}
+
+		
 
 			if (Admin.modeControl==true){
 
-				out.println("JA "+ userName+ Contents.jokes.get("JA"));
+				if (Arrays.asList(status).contains("JA")==false){
+					out.println("JA "+ userName+" "+ Contents.jokes.get("JA"));
+				}else if ((Arrays.asList(status).contains("JA")==true)&&(Arrays.asList(status).contains("JB")==false)){
+					out.println("JB "+ userName+ " "+Contents.jokes.get("JB"));
+				}else if ((Arrays.asList(status).contains("JA")==true)&&(Arrays.asList(status).contains("JB")==true)&&(Arrays.asList(status).contains("JC")==false)){
+					out.println("JC "+ userName+ " "+Contents.jokes.get("JC"));
+				}else if ((Arrays.asList(status).contains("JA")==true)&&(Arrays.asList(status).contains("JB")==true)&&(Arrays.asList(status).contains("JC")==true)&&(Arrays.asList(status).contains("JD")==false)){
+					out.println("JD "+ userName+ " "+Contents.jokes.get("JD"));
+				}else {
+					out.println("JD "+ userName+ " "+Contents.jokes.get("JD"));//out.println("JD "+ userName+ " "+Contents.jokes.get("JD"));
+				}
+				
 			}else{
-				out.println("PA "+ userName+ ": You can't wake a person who is pretending to be asleep.");
+				if (Arrays.asList(status).contains("PA")==false){
+					out.println("PA "+ userName+" "+ Contents.proverbs.get("PA"));
+				}else if ((Arrays.asList(status).contains("PA")==true)&&(Arrays.asList(status).contains("PB")==false)){
+					out.println("PB "+ userName+ " "+Contents.proverbs.get("PB"));
+				}else if ((Arrays.asList(status).contains("PA")==true)&&(Arrays.asList(status).contains("PB")==true)&&(Arrays.asList(status).contains("PC")==false)){
+					out.println("PC "+ userName+ " "+Contents.proverbs.get("PC"));
+				}else if ((Arrays.asList(status).contains("PA")==true)&&(Arrays.asList(status).contains("PB")==true)&&(Arrays.asList(status).contains("PC")==true)&&(Arrays.asList(status).contains("PD")==false)){
+					out.println("PD "+ userName+ " "+Contents.proverbs.get("PD"));
+				}else {
+					out.println("PD "+ userName+ " "+Contents.proverbs.get("PD"));//out.println("JD "+ userName+ " "+Contents.jokes.get("JD"));
+				}
+				
 			}
 			
 

@@ -7,9 +7,7 @@ public class JokeClient {
 	public static void main(String[] args){
 		String serverName;
 		String userName;
-		HashMap<String,ArrayList<String>> status=new HashMap<String,ArrayList<String>>();
-		status.put("JOKE",new ArrayList());
-		status.put("PROVERB", new ArrayList());
+		ArrayList<String> status=new ArrayList<String>();
 
 		if (args.length<1){
 			serverName="localhost";
@@ -26,6 +24,7 @@ public class JokeClient {
 				name=in.readLine();
 				if (name.indexOf("quit")<0){
 					status=getInfo(serverName, name, userName,status);
+					System.out.println(status);
 				}
 			}while(name.indexOf("quit")<0);
 			System.out.println("Cancelled by user request.");
@@ -35,7 +34,7 @@ public class JokeClient {
 		
 	}
 
-	static HashMap<String,ArrayList<String>> getInfo(String serverName, String name, String userName, HashMap<String,ArrayList<String>> status){
+	static ArrayList<String> getInfo(String serverName, String name, String userName, ArrayList<String> status){
 		Socket sock;
 		BufferedReader fromServer;
 		PrintStream toServer;
@@ -43,6 +42,7 @@ public class JokeClient {
 		ArrayList<String> passInfo=new ArrayList<String>();
 		passInfo.add(userName);
 		passInfo.add(name);
+		String newItem;
 
 		try{
 			sock=new Socket(serverName, 4545);
@@ -55,10 +55,15 @@ public class JokeClient {
 			if (textFromServer!=null){
                 System.out.println(textFromServer);      //if the content is not empty, print out the message on the console
 		    }
+		    newItem=textFromServer.split(" ")[0];
+		    status.add(newItem);
 		    sock.close();
 		}catch(IOException e){
 			System.out.println("Socket Error!");            //IOException, prints an error message
 			e.printStackTrace();
 		}
+		return status;
 	}
+
+	
 }
