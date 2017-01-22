@@ -2,7 +2,8 @@ import java.io.*;
 import java.net.*;
 import java.util.HashMap;
 import java.util.Arrays;
-
+import java.util.ArrayList;
+import java.util.Collections;
 
 /*
  The class JokeServer contains the main function,
@@ -46,52 +47,78 @@ class Worker extends Thread{
 		String statusFrom;
 		String statusFromNew;
 		String[] status;
+		ArrayList<String> jokeitems=new ArrayList<String>();
+		ArrayList<String> proverbitems=new ArrayList<String>();
+		String cycleFrom;
+		String[] cycleJoke;
+		String[] cycleProverb;
+		ArrayList<String> cycleListJoke=new ArrayList<String>();
+		ArrayList<String> cycleListProverb=new ArrayList<String>();
+		jokeitems.add("JA");
+		jokeitems.add("JB");
+		jokeitems.add("JC");
+		jokeitems.add("JD");
+		proverbitems.add("PA");
+		proverbitems.add("PB");
+		proverbitems.add("PC");
+		proverbitems.add("PD");
 
 		try{
 			in=new BufferedReader(new InputStreamReader(sock.getInputStream()));  //in is a buffered read to read the character-based text coming into the socket
 			out=new PrintStream(sock.getOutputStream()); 
 			fromClient=in.readLine();
-			fromClientSep=fromClient.split(",");
+			fromClientSep=fromClient.split(", ");
 			userName=fromClientSep[0].substring(1);
 			statusFrom=in.readLine();
 			if (statusFrom.length()<=2){status=new String[0];}
 			else{
 				statusFromNew=statusFrom.substring(1,statusFrom.length()-1);
 				status=statusFromNew.split(", ");
-				System.out.println(statusFromNew);
 			}
-
+			cycleFrom=in.readLine();
+			if (cycleFrom.length()<=2){cycleJoke=new String[0];}
+			else{
+				cycleJoke=cycleFrom.substring(1,cycleFrom.length()-1).split(", ");
+			}
+			
+			for (String item: cycleJoke){
+				cycleListJoke.add(item);
+			}
+			cycleFrom=in.readLine();
+			if (cycleFrom.length()<=2){cycleProverb=new String[0];}
+			else{
+				cycleProverb=cycleFrom.substring(1,cycleFrom.length()-1).split(", ");
+			}
+			
+			for (String item: cycleProverb){
+				cycleListProverb.add(item);
+			}
 		
 
 			if (Admin.modeControl==true){
+				if (cycleListJoke.size()==0){
+					Collections.shuffle(jokeitems);
+					for (String item: jokeitems){
+						cycleListJoke.add(item);
+					}
+				}
+				out.println(cycleListJoke.get(0)+ " "+userName+" "+ Contents.jokes.get(cycleListJoke.get(0)));
+				cycleListJoke.remove(0);
+				out.println(cycleListJoke);
 
-				if (Arrays.asList(status).contains("JA")==false){
-					out.println("JA "+ userName+" "+ Contents.jokes.get("JA"));
-				}else if ((Arrays.asList(status).contains("JA")==true)&&(Arrays.asList(status).contains("JB")==false)){
-					out.println("JB "+ userName+ " "+Contents.jokes.get("JB"));
-				}else if ((Arrays.asList(status).contains("JA")==true)&&(Arrays.asList(status).contains("JB")==true)&&(Arrays.asList(status).contains("JC")==false)){
-					out.println("JC "+ userName+ " "+Contents.jokes.get("JC"));
-				}else if ((Arrays.asList(status).contains("JA")==true)&&(Arrays.asList(status).contains("JB")==true)&&(Arrays.asList(status).contains("JC")==true)&&(Arrays.asList(status).contains("JD")==false)){
-					out.println("JD "+ userName+ " "+Contents.jokes.get("JD"));
-				}else {
-					out.println("JD "+ userName+ " "+Contents.jokes.get("JD"));//out.println("JD "+ userName+ " "+Contents.jokes.get("JD"));
-				}
-				
 			}else{
-				if (Arrays.asList(status).contains("PA")==false){
-					out.println("PA "+ userName+" "+ Contents.proverbs.get("PA"));
-				}else if ((Arrays.asList(status).contains("PA")==true)&&(Arrays.asList(status).contains("PB")==false)){
-					out.println("PB "+ userName+ " "+Contents.proverbs.get("PB"));
-				}else if ((Arrays.asList(status).contains("PA")==true)&&(Arrays.asList(status).contains("PB")==true)&&(Arrays.asList(status).contains("PC")==false)){
-					out.println("PC "+ userName+ " "+Contents.proverbs.get("PC"));
-				}else if ((Arrays.asList(status).contains("PA")==true)&&(Arrays.asList(status).contains("PB")==true)&&(Arrays.asList(status).contains("PC")==true)&&(Arrays.asList(status).contains("PD")==false)){
-					out.println("PD "+ userName+ " "+Contents.proverbs.get("PD"));
-				}else {
-					out.println("PD "+ userName+ " "+Contents.proverbs.get("PD"));//out.println("JD "+ userName+ " "+Contents.jokes.get("JD"));
+				if (cycleListProverb.size()==0){
+					Collections.shuffle(proverbitems);
+					for (String item: proverbitems){
+						cycleListProverb.add(item);
+					}
 				}
+				out.println(cycleListProverb.get(0)+ " "+userName+" "+ Contents.proverbs.get(cycleListProverb.get(0)));
+				cycleListProverb.remove(0);
+				out.println(cycleListProverb);
 				
 			}
-			
+			out.println(Admin.modeControl);
 
 		}catch(IOException e){
 			System.out.println(e);
