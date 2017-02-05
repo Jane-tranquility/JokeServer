@@ -1,0 +1,209 @@
+JokeServer:
+
+JokeServer: localhost, port 4545.
+
+To client jane: sent JC
+JC jane Why do cows wear bells? Their horns don’t work.
+
+To client jane: sent JB
+JB jane How do you tell that a crab is drunk? It walks forwards.
+
+To client jane: sent JA
+JA jane I wanted to grow my own food but I couldnt get bacon seeds anywhere.
+
+The joke Server has been changed by admin client: in PROVERB mode now.
+
+To client jane: sent PA
+PA jane You can't wake a person who is pretending to be asleep.
+
+To client Zak: sent PA
+PA Zak You can't wake a person who is pretending to be asleep.
+
+To client Zak: sent PB
+PB Zak The talkative bird can not make a nest.
+
+The joke Server has been changed by admin client: in JOKE mode now.
+
+The joke Server has been changed by admin client: in PROVERB mode now.
+
+The joke Server has been changed by admin client: in JOKE mode now.
+
+To client Zak: sent JA
+JA Zak I wanted to grow my own food but I couldnt get bacon seeds anywhere.
+
+To client Zak: sent JC
+JC Zak Why do cows wear bells? Their horns don’t work.
+
+To client jane: sent JD
+JD jane What goes up and down but never moves? - The stairs!
+
+To client jane: sent JB
+JB jane How do you tell that a crab is drunk? It walks forwards.
+
+To client Sannya: sent JB
+JB Sannya How do you tell that a crab is drunk? It walks forwards.
+
+The joke Server has been changed by admin client: in PROVERB mode now.
+
+To client Sannya: sent PA
+PA Sannya You can't wake a person who is pretending to be asleep.
+
+To client Sannya: sent PB
+PB Sannya The talkative bird can not make a nest.
+
+To client Zak: sent PC
+PC Zak Rumors are carried by haters, spread by fools, and accepted by idiots.
+
+To client Zak: sent PD
+PD Zak It is not work that kills, but worry.
+
+To client Zak: sent PD
+PD Zak It is not work that kills, but worry.
+
+To client jane: sent PB
+PB jane The talkative bird can not make a nest.
+
+To client jane: sent PD
+PD jane It is not work that kills, but worry.
+
+To client Sannya: sent PD
+PD Sannya It is not work that kills, but worry.
+
+The joke Server has been changed by admin client: in JOKE mode now.
+
+To client Sannya: sent JC
+JC Sannya Why do cows wear bells? Their horns don’t work.
+
+To client Sannya: sent JD
+JD Sannya What goes up and down but never moves? - The stairs!
+
+To client jane: sent JD
+JD jane What goes up and down but never moves? - The stairs!
+
+To client jane: sent JA
+JA jane I wanted to grow my own food but I couldnt get bacon seeds anywhere.
+
+To client Zak: sent JD
+JD Zak What goes up and down but never moves? - The stairs!
+
+To client Zak: sent JB
+JB Zak How do you tell that a crab is drunk? It walks forwards.
+
+The joke Server has been changed by admin client: in PROVERB mode now.
+
+To client Sannya: sent PC
+PC Sannya Rumors are carried by haters, spread by fools, and accepted by idiots.
+
+
+
+
+
+
+
+JokeClientAdmin:
+
+JokeClientAdmin: using server: localhost, port 5050
+
+The joke Server is in PROVERB mode now.
+
+The joke Server is in JOKE mode now.
+
+The joke Server is in PROVERB mode now.
+
+The joke Server is in JOKE mode now.
+
+The joke Server is in PROVERB mode now.
+
+The joke Server is in JOKE mode now.
+
+The joke Server is in PROVERB mode now.
+
+
+
+
+
+
+
+JokeClient 1:
+
+Jokeclient: using server: localhost, port 4545
+Please enter your user name: 
+jane
+
+JC jane Why do cows wear bells? Their horns don’t work.
+
+JB jane How do you tell that a crab is drunk? It walks forwards.
+
+JA jane I wanted to grow my own food but I couldnt get bacon seeds anywhere.
+
+PA jane You can't wake a person who is pretending to be asleep.
+
+JD jane What goes up and down but never moves? - The stairs!
+
+JB jane How do you tell that a crab is drunk? It walks forwards.
+
+PB jane The talkative bird can not make a nest.
+
+PD jane It is not work that kills, but worry.
+
+JD jane What goes up and down but never moves? - The stairs!
+
+JA jane I wanted to grow my own food but I couldnt get bacon seeds anywhere.
+
+
+
+
+
+
+
+JokeClient 2:
+
+Jokeclient: using server: localhost, port 4545
+Please enter your user name: 
+Zak
+
+PA Zak You can't wake a person who is pretending to be asleep.
+
+PB Zak The talkative bird can not make a nest.
+
+JA Zak I wanted to grow my own food but I couldnt get bacon seeds anywhere.
+
+JC Zak Why do cows wear bells? Their horns don’t work.
+
+PC Zak Rumors are carried by haters, spread by fools, and accepted by idiots.
+
+PD Zak It is not work that kills, but worry.
+
+PD Zak It is not work that kills, but worry.
+
+JD Zak What goes up and down but never moves? - The stairs!
+
+JB Zak How do you tell that a crab is drunk? It walks forwards.
+
+
+
+
+
+
+JokeClient 3:
+
+Jokeclient: using server: localhost, port 4545
+Please enter your user name: 
+Sannya        
+
+JB Sannya How do you tell that a crab is drunk? It walks forwards.
+
+PA Sannya You can't wake a person who is pretending to be asleep.
+
+PB Sannya The talkative bird can not make a nest.
+
+PD Sannya It is not work that kills, but worry.
+
+JC Sannya Why do cows wear bells? Their horns don’t work.
+
+JD Sannya What goes up and down but never moves? - The stairs!
+
+PC Sannya Rumors are carried by haters, spread by fools, and accepted by idiots.
+
+
+
